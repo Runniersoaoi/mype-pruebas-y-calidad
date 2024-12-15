@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MYPE Management System</title>
+</head>
+<body>
+<h1>MYPE Management System</h1>
+
+<h2>Inventory</h2>
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.quantity}"></td>
+    </tr>
+</table>
+
+<h3>Add Product</h3>
+<form action="/addProduct" method="post">
+    <input type="text" name="name" placeholder="Product Name" required>
+    <input type="number" name="quantity" placeholder="Quantity" required>
+    <button type="submit">Add</button>
+</form>
+
+<h2>Sales</h2>
+<p>Total Sales: <span th:text="${totalSales}"></span></p>
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="sale : ${sales}">
+        <td th:text="${sale.product.name}"></td>
+        <td th:text="${sale.quantity}"></td>
+        <td th:text="${sale.saleDate}"></td>
+    </tr>
+</table>
+
+<h3>Register Sale</h3>
+<form action="/registerSale" method="post">
+    <input type="text" name="productName" placeholder="Product Name" required>
+    <input type="number" name="quantity" placeholder="Quantity" required>
+    <button type="submit">Register Sale</button>
+</form>
+</body>
+</html>
